@@ -6,7 +6,7 @@
 #include "lux/json.hpp"
 #include "lux/log.hpp"
 
-//#define SAVE_DEBUG
+#define SAVE_DEBUG
 //#define LOAD_DEBUG
 
 void logInput(std::string fileName, json s) {

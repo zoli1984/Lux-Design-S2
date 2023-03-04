@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <utility>
 
 #include "lux/common.hpp"
 #include "lux/json.hpp"
@@ -17,6 +18,9 @@ namespace lux {
         std::vector<std::vector<bool>>    valid_spawns_mask;
         std::vector<std::vector<int64_t>> factory_occupancy;  // populated in Observation deserialization
         int64_t                           factories_per_team;
+
+        std::vector<lux::Position> ice_vect;
+        std::vector<lux::Position> ore_vect;
 
        private:
         bool                           initialized = false;

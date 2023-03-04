@@ -15,6 +15,22 @@ namespace lux {
         }
     }  // namespace
 
+    void InitBoard(Board& b) {
+        b.ice_vect.reserve(50);
+        b.ore_vect.reserve(50);
+        for (int i = 0; i < b.ice.size(); i++) {
+            for (int j = 0; j < b.ice[0].size(); j++) {
+                lux::Position coord(i, j);
+                if (b.ice[i][j]) {
+                    b.ice_vect.push_back(coord);
+                }
+                if (b.ore[i][j]) {
+                    b.ore_vect.push_back(coord);
+                }
+            }
+        }
+    }
+
     void to_json(json &j, const Board b) {
         j["ice"]                = b.ice;
         j["lichen"]             = b.lichen;
@@ -34,6 +50,7 @@ namespace lux {
             j.at("lichen_strains").get_to(b.lichen_strains);
             j.at("ore").get_to(b.ore);
             j.at("rubble").get_to(b.rubble);
+            InitBoard(b);
         } else {
             // apply delta for step > 0
             j.at("lichen").get_to(b.lichen_delta);
@@ -48,4 +65,6 @@ namespace lux {
         }
         j.at("factories_per_team").get_to(b.factories_per_team);
     }
+
+
 }  // namespace lux

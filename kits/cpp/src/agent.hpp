@@ -29,4 +29,6 @@ struct Agent {
 
     json setup();
     json act();
+
+    double getPosValue(int x, int y, std::vector<lux::Position>& materialVect, int maxDistance);
 };
