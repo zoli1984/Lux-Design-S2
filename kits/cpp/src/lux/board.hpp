@@ -9,6 +9,11 @@
 #include "lux/json.hpp"
 
 namespace lux {
+
+    const int BOARD_SIZE = 48;
+    const int BOARD_SIZE2 = BOARD_SIZE * BOARD_SIZE;
+    const int INF = 9999999;
+
     struct Board {
         std::vector<std::vector<int64_t>> ice;
         std::vector<std::vector<int64_t>> lichen;

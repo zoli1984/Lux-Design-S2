@@ -8,6 +8,19 @@
 #include "lux/json.hpp"
 #include "lux/observation.hpp"
 
+
+
+struct DijsktraNode {
+    int dijsktraMetric=lux::INF;
+    int distance = 0;
+    int powerLight=0;
+    int powerHeavy=0;
+    int next = -1;
+};
+
+typedef std::pair<int, DijsktraNode> pii;
+typedef std::vector<std::vector<pii>> Graph;
+
 struct Agent {
     int64_t          step;
     std::string      player;
@@ -31,4 +44,7 @@ struct Agent {
     json act();
 
     double getPosValue(int x, int y, std::vector<lux::Position>& materialVect, int maxDistance);
+    void dijkstra(const Graph& graph, int source, std::vector<DijsktraNode>& nodes);
+
+    Graph createGraphWeights(int base, int rubbleDivider);
 };
