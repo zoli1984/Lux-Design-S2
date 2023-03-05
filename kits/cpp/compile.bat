@@ -9,7 +9,7 @@ Rem parse input parameters
 set build_warnings="ON"
 set build_config="Release"
 set build_debug="OFF"
-set build_dir="build"
+set build_dir="d:/kaggle/Lux2Make/"
 
 :parameterloop
 if "%1"=="" goto parameterloopend
