@@ -22,3 +22,7 @@ replay.html
 /kits/java/.idea/
 /kits/java/luxai2022.iml
 /kits/java/localrun/*.jar
+/.vs
+/kits/cpp/CMakeFiles/cmake.check_cache
+/kits/cpp/CMakeCache.txt
+/kits/cpp/run_sim.bat
