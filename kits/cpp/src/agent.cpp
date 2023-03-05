@@ -44,8 +44,6 @@ Graph Agent::createGraphWeights(int base, int rubbleDivider) {
 
 
 void Agent::dijkstra(const Graph& graph, int source, vector<DijsktraNode> &nodes) {
-    int n = graph.size();
-
     priority_queue<int, vector<int>, greater<int>> pq;
     nodes[source].dijsktraMetric = 0;
     nodes[source].powerLight = 0;
@@ -106,7 +104,7 @@ double Agent::getPosValue(int x, int y, std::vector<lux::Position>& materialVect
         //posValue += pow(materialBaseFactor, dist);
     }
     std::sort(values.begin(), values.end(), std::greater<>());
-    for (int i = 0; i < values.size(); i++) {
+    for (size_t i = 0; i < values.size(); i++) {
         posValue += values[i] * std::pow(0.5, i);
     }
     return posValue;
@@ -118,13 +116,12 @@ json Agent::setup() {
         return lux::BidAction(player == "player_1" ? "AlphaStrike" : "MotherMars", 0);
     }
     if (obs.teams[player].factories_to_place && isTurnToPlaceFactory()) {
-        double materialBaseFactor = 0.5;
         // transform spawn_mask to positions
         const auto &spawns_mask = obs.board.valid_spawns_mask;
         lux::Position bestPos(-1,-1);
         double bestValue = -1;
-        for (int x = 0; x < spawns_mask.size(); ++x) {
-            for (int y = 0; y < spawns_mask[x].size(); ++y) {
+        for (size_t x = 0; x < spawns_mask.size(); ++x) {
+            for (size_t y = 0; y < spawns_mask[x].size(); ++y) {
                 if (spawns_mask[x][y]) {
                     double icePosValue = getPosValue(x, y, obs.board.ice_vect,5);
                     double orePosValue = getPosValue(x, y, obs.board.ore_vect,100);
@@ -137,7 +134,6 @@ json Agent::setup() {
                 }
             }
         }
-        static size_t index = 0;
         return lux::SpawnAction(bestPos,
                                 obs.teams[player].metal / 2,
                                 obs.teams[player].water / 2);

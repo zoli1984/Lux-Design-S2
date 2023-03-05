@@ -18,8 +18,8 @@ namespace lux {
     void InitBoard(Board& b) {
         b.ice_vect.reserve(50);
         b.ore_vect.reserve(50);
-        for (int i = 0; i < b.ice.size(); i++) {
-            for (int j = 0; j < b.ice[0].size(); j++) {
+        for (size_t i = 0; i < b.ice.size(); i++) {
+            for (size_t j = 0; j < b.ice[0].size(); j++) {
                 lux::Position coord(i, j);
                 if (b.ice[i][j]) {
                     b.ice_vect.push_back(coord);
